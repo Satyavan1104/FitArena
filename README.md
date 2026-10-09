@@ -411,7 +411,7 @@ Tests cover:
 **2.Login page**
 <img width="1600" height="782" alt="image" src="https://github.com/user-attachments/assets/dcb7b0e8-86e0-4847-9c7f-51c0ed41e21a" />
 
-**3.Profile **
+**3.Profile**
 <img width="1600" height="780" alt="image" src="https://github.com/user-attachments/assets/9e4a79eb-44d2-4703-b0ea-b22c570aa475" />
 
 **4.Dashboard**
@@ -423,7 +423,7 @@ Tests cover:
 **6.Activity** 
 <img width="1600" height="782" alt="image" src="https://github.com/user-attachments/assets/672df5ca-41b5-4ca6-8e2f-fbda86dc0f44" />
 
-**7.Activity History **
+**7.Activity History**
 <img width="1600" height="782" alt="image" src="https://github.com/user-attachments/assets/acea03d5-d0fd-4732-a74a-89552af5be48" />
 
 **8.User login Database** 
