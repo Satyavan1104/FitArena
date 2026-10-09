@@ -403,7 +403,25 @@ Tests cover:
 - Dashboard data aggregation
 - Activity history
 
----
+**Screenshots**
+1.Resister page
+<img width="1600" height="791" alt="image" src="https://github.com/user-attachments/assets/1c001a6e-dfed-48b4-94b1-978e334c73b6" />
+2.Login page
+<img width="1600" height="782" alt="image" src="https://github.com/user-attachments/assets/dcb7b0e8-86e0-4847-9c7f-51c0ed41e21a" />
+3.Profile 
+<img width="1600" height="780" alt="image" src="https://github.com/user-attachments/assets/9e4a79eb-44d2-4703-b0ea-b22c570aa475" />
+4.Dashboard
+<img width="1600" height="789" alt="image" src="https://github.com/user-attachments/assets/9bc849ec-53b4-42e4-b140-f90a8325724f" />
+5.Global Leaderboard
+<img width="1600" height="790" alt="image" src="https://github.com/user-attachments/assets/22873782-5d28-4f86-8386-2844c6ba46e7" />
+6.Activity 
+<img width="1600" height="782" alt="image" src="https://github.com/user-attachments/assets/672df5ca-41b5-4ca6-8e2f-fbda86dc0f44" />
+7.Activity History 
+<img width="1600" height="782" alt="image" src="https://github.com/user-attachments/assets/acea03d5-d0fd-4732-a74a-89552af5be48" />
+8.User login Database 
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/3e5ad7b5-97d6-4899-8653-c2d03b94c6b1" />
+9.Activity Database
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/44f68ee6-dba1-4dd4-8ba6-740c852082b8" />
 
 ## Edge Cases
 
