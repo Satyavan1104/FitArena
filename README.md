@@ -383,12 +383,6 @@ Tests cover:
 
 ---
 
-## Screenshots
-
-*Screenshots will be added after running the application locally.*
-
----
-
 ## Edge Cases
 
 - **Duplicate registration**: Returns HTTP 409 for duplicate email or duplicate first+last name
@@ -401,5 +395,3 @@ Tests cover:
 - **Tied rankings**: Users with equal points share the same rank number
 - **Non-existent user**: Authentication prevents unauthorized access
 - **Concurrent requests**: SQLite handles writes sequentially; bulk operations are transactional
-
--
