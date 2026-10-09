@@ -4,29 +4,6 @@ A modern fitness gamification platform where users record activities, earn norma
 
 ---
 
-## Table of Contents
-
-1. [Project Overview](#project-overview)
-2. [Recent Updates](#recent-updates)
-3. [Features](#features)
-4. [Tech Stack](#tech-stack)
-5. [Architecture](#architecture)
-6. [Database Schema](#database-schema)
-7. [API Endpoints](#api-endpoints)
-8. [Scoring Logic](#scoring-logic)
-9. [Installation](#installation)
-10. [Environment Variables](#environment-variables)
-11. [Running the Frontend](#running-the-frontend)
-12. [Running the Backend](#running-the-backend)
-13. [Running with Docker Compose](#running-with-docker-compose)
-14. [Running Tests](#running-tests)
-15. [Screenshots](#screenshots)
-16. [Design Decisions](#design-decisions)
-17. [Edge Cases](#edge-cases)
-18. [Future Improvements](#future-improvements)
-
----
-
 ## Project Overview
 
 FitArena is a full-stack web application that allows users to:
@@ -38,24 +15,6 @@ FitArena is a full-stack web application that allows users to:
 - Compete on a global leaderboard with podium display and rank trends
 - Log single or multiple activities in one submission with live point previews
 - Browse searchable, filterable activity history
-
-The database starts empty — no demo accounts or seeded data. The reviewer creates a real account, logs activities, and watches the dashboard and leaderboard populate dynamically.
-
----
-
-## Recent Updates
-
-Recent improvements added to the project include:
-
-- Docker-based local setup for the full stack using `docker-compose.yml`
-- Automatic database initialization on backend startup
-- Health endpoint at `/api/health` for quick service verification
-- Bulk activity submission support for logging multiple workouts in a single request
-- Improved personal dashboard analytics, including weekly totals, recent activity feed, and sport breakdown charts
-- Account deletion flow for self-service cleanup from the profile screen
-- More resilient empty-state, loading-state, and error-state UX in the frontend
-
-This README has been refreshed to match the current application behavior and the latest developer workflow.
 
 ---
 
@@ -130,40 +89,20 @@ This README has been refreshed to match the current application behavior and the
 
 ## Architecture
 
-```
-fitarena/
-├── frontend/                  # React + Vite frontend
-│   ├── src/
-│   │   ├── components/        # Reusable UI components
-│   │   ├── context/           # Auth context provider
-│   │   ├── pages/             # Route-level page components
-│   │   ├── services/          # Centralized API client
-│   │   └── utils/             # Helper functions
-│   ├── package.json
-│   ├── vite.config.js
-│   └── tailwind.config.js
-│
-├── backend/                   # Python FastAPI backend
-│   ├── app/
-│   │   ├── main.py            # FastAPI app entry point
-│   │   ├── config.py          # Configuration
-│   │   ├── database.py        # SQLAlchemy setup
-│   │   ├── models/            # SQLAlchemy ORM models
-│   │   ├── schemas/           # Pydantic request/response schemas
-│   │   ├── routes/            # API route handlers
-│   │   └── services/          # Business logic (scoring, auth, leaderboard, dashboard)
-│   ├── tests/                 # pytest tests
-│   ├── init_db.py             # Database initialization script
-│   └── requirements.txt
-│
-├── database/
-│   └── schema.sql             # SQL reference schema
-│
-├── docker-compose.yml
-├── DESIGN.md
-├── README.md
-└── .gitignore
-```
+<img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/901b5680-fdbe-4a8a-9b60-5b44aefc6bed" />
+
+<img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/cb433747-5136-4093-8869-eeaa79acd89a" />
+
+
+<img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/8237f9cd-68c8-41c5-99ca-30a1192d767b" />
+
+<img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/89c352a9-ad34-4434-85ab-2c4a15bb751d" />
+
+<img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/0a559ff9-3692-4bb9-8a98-71272e44565c" />
+
+<img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/11ca8051-f139-4d47-a5da-cc82fb8447b0" />
+
+---
 
 **Data flow:**
 
@@ -353,19 +292,6 @@ All scoring is handled centrally in `backend/app/services/scoring.py`. The front
 - npm or yarn
 - Docker Desktop (optional, for the containerized setup)
 
-### Quick Start (recommended)
-
-Use Docker Compose to run both the backend and frontend together:
-
-```bash
-docker compose up --build
-```
-
-Then open:
-
-- Frontend: `http://localhost:5173`
-- Backend API: `http://localhost:8000`
-
 ### Backend Setup
 
 ```bash
@@ -385,20 +311,7 @@ npm install
 ---
 
 ## Environment Variables
-
-### Frontend (`frontend/.env`)
 ```
-VITE_API_URL=http://127.0.0.1:8000/api
-```
-
-### Backend (optional — defaults are provided in `app/config.py`)
-```
-DATABASE_URL=sqlite:///./fitarena.db
-SECRET_KEY=your-secret-key
-ACCESS_TOKEN_EXPIRE_MINUTES=10080
-```
-
----
 
 ## Running the Frontend
 
@@ -476,26 +389,6 @@ Tests cover:
 
 ---
 
-## Design Decisions
-
-1. **JWT over sessions**: Stateless authentication simplifies the architecture and works well with a SPA frontend.
-
-2. **Service layer separation**: Business logic (scoring, leaderboard, dashboard aggregation) lives in dedicated service modules, keeping route handlers thin.
-
-3. **Centralized scoring**: A single `calculate_activity_points()` function ensures scoring rules are never duplicated. The frontend shows previews only for UX.
-
-4. **SQL aggregation for leaderboard**: Rankings are computed via `SUM(points) GROUP BY user_id` rather than loading all activities into Python.
-
-5. **Atomic bulk submission**: Bulk activity insertion validates all items first, then commits in a single transaction. If any item is invalid, the entire batch is rejected.
-
-6. **Empty database by design**: No seed data ensures the reviewer experiences the full registration → login → activity logging flow.
-
-7. **Tailwind CSS custom theme**: A charcoal + blue color palette with custom animations creates a modern SaaS aesthetic without looking generic.
-
-8. **Responsive sidebar → bottom nav**: Desktop uses a fixed sidebar; mobile uses a bottom navigation bar for thumb-friendly access.
-
----
-
 ## Edge Cases
 
 - **Duplicate registration**: Returns HTTP 409 for duplicate email or duplicate first+last name
@@ -509,133 +402,4 @@ Tests cover:
 - **Non-existent user**: Authentication prevents unauthorized access
 - **Concurrent requests**: SQLite handles writes sequentially; bulk operations are transactional
 
----
-
-## Future Improvements
-
-1. **Password reset flow**: Implement email-based password reset (currently shows "Coming soon")
-2. **Leaderboard snapshots**: Schedule periodic snapshots for accurate rank trend tracking
-3. **Activity editing**: Allow users to edit or delete logged activities
-4. **Profile editing**: Allow users to update their fitness goal and avatar
-5. **Social features**: Follow other users, share activities
-6. **Achievements/badges**: Gamification milestones (1000 points, 50 activities, etc.)
-7. **Data export**: Export activity history as CSV
-8. **Mobile app**: React Native companion app
-9. **Dark mode**: System-wide dark theme toggle
-10. **Internationalization**: Multi-language support
-
----
-
-## File-by-File Purpose Reference
-
-This project is intentionally organized into a frontend app, a backend API, a SQLite database, and a few operational/config files. Generated dependency folders like `frontend/node_modules` and `backend/venv` are excluded from this summary because they are installed toolchain artifacts, not app source files.
-
-### Root project files
-
-- `README.md` — Main project documentation and setup guide.
-- `DESIGN.md` — Architecture overview, database model, and API design notes.
-- `Cmd.txt` — Quick local command list for running backend, frontend, and SQLite inspection.
-- `docker-compose.yml` — Starts the backend and frontend together in Docker.
-- `package-lock.json` — Lockfile for the root workspace dependencies.
-- `database/schema.sql` — SQL reference schema for the database tables and indexes.
-- `database/fitarena.db` — Local SQLite database file used by the application.
-- `backend/Dockerfile` — Container definition for the FastAPI backend service.
-- `backend/requirements.txt` — Python dependencies for the backend.
-- `backend/init_db.py` — Creates database tables without inserting demo data.
-- `frontend/Dockerfile` — Container definition for the Vite React frontend service.
-- `frontend/package.json` — Frontend scripts, dependencies, and build configuration.
-- `frontend/index.html` — HTML entry point for the Vite app.
-- `frontend/vite.config.js` — Vite configuration and dev-server setup.
-- `frontend/tailwind.config.js` — Tailwind theme, colors, spacing, and custom style setup.
-- `frontend/public/favicon.svg` — Small browser icon for the app.
-
-### Backend source tree (`backend/app`)
-
-- `backend/app/main.py` — FastAPI application entry point; registers middleware, startup hook, health route, and routers.
-- `backend/app/config.py` — Environment configuration for the database URL, JWT settings, and CORS origins.
-- `backend/app/database.py` — SQLAlchemy engine/session setup and database initialization logic.
-
-#### Models
-
-- `backend/app/models/user.py` — SQLAlchemy model for the `users` table.
-- `backend/app/models/activity.py` — SQLAlchemy model for user activities and stored points.
-- `backend/app/models/leaderboard_snapshot.py` — SQLAlchemy model for leaderboard snapshots used for rank-trend calculations.
-- `backend/app/models/__init__.py` — Packages the model modules for import discovery.
-
-#### Schemas
-
-- `backend/app/schemas/user.py` — Validation models for user registration, login, and auth responses.
-- `backend/app/schemas/activity.py` — Validation models for single and bulk activity submissions.
-- `backend/app/schemas/__init__.py` — Schema package initializer.
-
-#### Routes
-
-- `backend/app/routes/auth.py` — Register/login/me endpoints; handles authentication flow and JWT issuance.
-- `backend/app/routes/users.py` — Returns profile and dashboard-related user data.
-- `backend/app/routes/activities.py` — Creates single or bulk activities and validates each workout.
-- `backend/app/routes/leaderboard.py` — Returns leaderboard data and current-user rank.
-- `backend/app/routes/__init__.py` — Router package initializer.
-
-#### Services
-
-- `backend/app/services/auth.py` — Core authentication logic, password hashing, token creation, and user lookup.
-- `backend/app/services/dashboard.py` — Aggregates dashboard statistics: total points, counts, weekly totals, recent activity, and chart data.
-- `backend/app/services/leaderboard.py` — Calculates ranking data and trend comparisons for the leaderboard.
-- `backend/app/services/scoring.py` — Central scoring engine for all supported fitness activities and floor rules.
-- `backend/app/services/__init__.py` — Service package initializer.
-
-#### Tests
-
-- `backend/tests/conftest.py` — Shared pytest fixtures and test setup.
-- `backend/tests/test_api.py` — API-level tests for auth, user routes, activities, and leaderboard.
-- `backend/tests/test_scoring.py` — Unit tests for scoring math, floor logic, and edge cases.
-- `backend/tests/__init__.py` — Test package initializer.
-
-### Frontend source tree (`frontend/src`)
-
-- `frontend/src/main.jsx` — Bootstraps the React app, wraps it in `BrowserRouter`, and attaches the auth provider.
-- `frontend/src/App.jsx` — Main route configuration, protected-route guard, and app-wide route map.
-- `frontend/src/index.css` — Global CSS, custom theme variables, base styles, and Tailwind directives.
-
-#### Components
-
-- `frontend/src/components/Layout.jsx` — Shared shell for authenticated pages, including sidebar/top navigation layout.
-- `frontend/src/components/Sidebar.jsx` — Sidebar navigation links for dashboard, leaderboard, history, and profile.
-- `frontend/src/components/TopBar.jsx` — Top bar with page title and user status controls.
-- `frontend/src/components/ProtectedRoute.jsx` — Guards pages that require login and redirects unauthenticated users.
-- `frontend/src/components/StatCard.jsx` — Reusable KPI card showing totals and metrics.
-- `frontend/src/components/ActivityChart.jsx` — Reusable chart for points-over-time visualization.
-- `frontend/src/components/SportBreakdown.jsx` — Donut chart for per-activity points distribution.
-- `frontend/src/components/LeaderboardTable.jsx` — Table view for leaderboard ranking and rank trends.
-- `frontend/src/components/ActivityIcon.jsx` — Icon mapping for each activity type.
-- `frontend/src/components/EmptyState.jsx` — Empty-state UI for no-data screens.
-- `frontend/src/components/ErrorState.jsx` — Error display with retry action support.
-- `frontend/src/components/LoadingSkeleton.jsx` — Skeleton loaders for dashboard and activity-history states.
-- `frontend/src/components/ErrorBoundary.jsx` — Global React error boundary for safe failure handling.
-- `frontend/src/components/Toast.jsx` — Generic toast notification component (if used by the app flow).
-
-#### Context and utilities
-
-- `frontend/src/context/AuthContext.jsx` — Global authentication context for login, register, logout, and session restore.
-- `frontend/src/services/api.js` — Centralized Axios instance with JWT auth headers and 401 redirect handling.
-- `frontend/src/utils/helpers.js` — Shared helper functions for daily greeting, date formatting, and points formatting.
-
-#### Pages
-
-- `frontend/src/pages/Login.jsx` — Sign-in screen with validation and redirect handling.
-- `frontend/src/pages/Register.jsx` — Account creation screen for new users.
-- `frontend/src/pages/Dashboard.jsx` — Personal overview with stat cards, recent activities, chart panels, and quick actions.
-- `frontend/src/pages/AddActivity.jsx` — Activity logging form for single and bulk tracking.
-- `frontend/src/pages/ActivityHistory.jsx` — Searchable, filterable activity log with pagination.
-- `frontend/src/pages/Leaderboard.jsx` — Global ranking page with podium and leaderboard table.
-- `frontend/src/pages/Profile.jsx` — User profile page with account details and options like logout or delete account.
-
-### Additional notes
-
-- The project intentionally separates the UI from business logic: the frontend displays data, while the backend computes scoring and ranking.
-- The database is intentionally empty at startup so that a reviewer can create a real account, log activities, and watch the dashboard populate organically.
-- `frontend/node_modules` and `backend/venv` are runtime-installed dependencies and are not part of the custom application source.
-
----
-
-This file purpose reference is designed so a new developer can quickly understand what each part of the FitArena project does without needing to read the entire codebase first.
+-
