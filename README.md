@@ -2,8 +2,6 @@
 
 A modern fitness gamification platform where users record activities, earn normalized points, track trends, and compete on a global leaderboard.
 
-Built as a submission for the **NEOGOV Fitness Challenge Application assignment**.
-
 ---
 
 ## Table of Contents
