@@ -88,37 +88,37 @@ FitArena is a full-stack web application that allows users to:
 ---
 
 ## Architecture
-**1.System Architecture Diagram**
+**a.System Architecture Diagram**
 <img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/901b5680-fdbe-4a8a-9b60-5b44aefc6bed" />
 Illustrates the overall FitArena architecture, connecting the React + Vite frontend, FastAPI backend, and SQLite database.
 Highlights authentication, API routing, activity scoring, dashboard analytics, and leaderboard services.
 Shows how data flows between users, backend services, and the database.
 
-**2.Database Schema & ER Diagram**
+**b.Database Schema & ER Diagram**
 <img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/cb433747-5136-4093-8869-eeaa79acd89a" />
 Defines the SQLite database structure, including Users, Activities, and Leaderboard Snapshots tables.
 Shows primary keys, foreign keys, data types, constraints, and indexing for data integrity.
 Illustrates the relationships between users, their workout activities, and leaderboard records.
 
-**3.Frontend Component Architecture Diagram**
+**c.Frontend Component Architecture Diagram**
 <img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/8237f9cd-68c8-41c5-99ca-30a1192d767b" />
 Shows the React frontend structure, from the root App.jsx component to layouts, navigation, and individual pages.
 Explains the roles of authentication context, protected routes, centralized API clients, and reusable UI components.
 Visualizes how dashboard charts, activity forms, history, and leaderboard views interact with the backend API.
 
-**4.Activity Scoring & Normalization Flowchart**
+**d.Activity Scoring & Normalization Flowchart**
 <img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/89c352a9-ad34-4434-85ab-2c4a15bb751d" />
 Explains how FitArena validates workout submissions and calculates points based on activity type.
 Covers distance-based, duration-based, and step-based scoring, including rounding and input validation rules.
 Shows how calculated points are saved to SQLite and used to update dashboard statistics and leaderboard rankings.
 
-**5.API Request & Response Flow**
+**e.API Request & Response Flow**
 <img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/0a559ff9-3692-4bb9-8a98-71272e44565c" />
 Visualizes the request and response flow between the React client, FastAPI backend, business services, and SQLite database.
 Demonstrates registration, workout logging, validation, authentication, database operations, and dashboard data retrieval.
 Highlights HTTP response codes for successful operations and validation errors.
 
-**6.Leaderboard Calculation & Trend Flow**
+**f.Leaderboard Calculation & Trend Flow**
 <img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/11ca8051-f139-4d47-a5da-cc82fb8447b0" />
 Illustrates how FitArena aggregates activity points and calculates total scores for each user.
 Explains how users are ranked by points and how current rankings are compared with previous snapshots to track changes.
